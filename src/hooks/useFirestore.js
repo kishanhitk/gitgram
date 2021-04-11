@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { firestore } from '../firebase/config'
 const useFirestore = (collection) => {
     const [docs, setdocs] = useState([])
@@ -13,7 +13,7 @@ const useFirestore = (collection) => {
                 setdocs(documents);
             })
         return () => unsubscribe();
-    }, [docs])
+    }, [collection, docs])
     return { docs };
 }
 export default useFirestore;
