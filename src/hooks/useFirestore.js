@@ -13,7 +13,7 @@ const useFirestore = (collection) => {
                 setdocs(documents);
             })
         return () => unsubscribe();
-    }, [collection, docs])
+    }, [collection])
     return { docs };
 }
 export default useFirestore;
