@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import useStorage from '../hooks/useStorage';
 const ProgressBar = ({ file, setfile }) => {
-    const { url, progress, error } = useStorage(file);
+    const { url, progress } = useStorage(file);
     console.log(url, progress);
     useEffect(() => {
         if (url) {
