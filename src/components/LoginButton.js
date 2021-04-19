@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { auth, firebase } from "../firebase/config";
+import { auth, firebase, firestore } from "../firebase/config";
 import { Button } from "@material-ui/core";
 
 export default function LoginButton() {
@@ -15,12 +15,19 @@ export default function LoginButton() {
         var credential = result.credential;
 
         // This gives you a GitHub Access Token. You can use it to access the GitHub API.
-        var token = credential.accessToken;
-        console.log(token);
-
-        // The signed-in user info.
         var user = result.user;
         console.log(user);
+        var token = credential.accessToken;
+        console.log(token);
+        
+        firestore.collection("userGitGram").doc(user.uid).set({
+          displayName: user.displayName,
+          photoURL: user.photoURL,
+          email: user.email,
+          uid: user.uid,
+        });
+
+        // The signed-in user info.
         seterror(null);
 
         // ...

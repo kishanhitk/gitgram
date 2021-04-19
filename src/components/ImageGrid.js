@@ -13,7 +13,7 @@ export default function ImageGrid({ setselectedImage }) {
               whileHover={{ opacity: 1 }}
               layout
               onClick={() => {
-                setselectedImage(doc.url);
+                setselectedImage(doc);
               }}
               className="img-wrap"
               key={doc.id}

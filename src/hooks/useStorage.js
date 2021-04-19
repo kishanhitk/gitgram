@@ -20,8 +20,17 @@ const useStorage = (file) => {
       async () => {
         const url = await storageRef.getDownloadURL();
         const createdAt = timestamp();
-        const uploaderUID = auth.currentUser.uid;
-        firestoreRef.add({ url, createdAt, uploaderUID });
+        const currentUser = auth.currentUser;
+        const uploaderUID = currentUser.uid;
+        const uploaderName = currentUser.displayName;
+        const uploaderPhotoURL = currentUser.photoURL;
+        firestoreRef.add({
+          url,
+          createdAt,
+          uploaderUID,
+          uploaderName,
+          uploaderPhotoURL,
+        });
         seturl(url);
       }
     );

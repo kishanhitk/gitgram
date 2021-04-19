@@ -67,8 +67,6 @@ export default function SignIn() {
       .then((result) => {
         var user = result.user;
         console.log(user);
-
-        // ...
       })
       .catch((err) => {
         seterror(err);
