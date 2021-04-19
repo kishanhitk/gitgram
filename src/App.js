@@ -1,18 +1,20 @@
-import React, { useState } from 'react';
-import ImageGrid from './components/ImageGrid';
-import Title from './components/Title';
-import UploadForm from './components/UploadForm';
-import Modal from './components/Modal'
-function App() {
-    const [selectedImage, setselectedImage] = useState(null)
-    return (
-        <div className="App">
-            <Title />
-            <UploadForm />
-            <ImageGrid setselectedImage={setselectedImage} />
-            {selectedImage && <Modal selectedImage={selectedImage} setselectedImage={setselectedImage} />}
-        </div>
-    );
-}
+import HomePage from "./components/HomePage";
+import SignIn from "./components/SignIn";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+const App = () => {
+  return (
+    <Router>
+      <Switch>
+        <Route exact path="/">
+          <HomePage />
+        </Route>
+        <Route exact path="/login">
+          <SignIn />
+        </Route>
+      </Switch>
+    </Router>
+  );
+};
 
 export default App;
