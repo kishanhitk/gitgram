@@ -1,13 +1,29 @@
-import React from 'react';
+import React from "react";
+import { Grid, Button } from "@material-ui/core";
+import { auth } from "../firebase/config";
+import { useAuthState } from "react-firebase-hooks/auth";
+import LoginButton from "./LoginButton";
 
 const Title = () => {
-    return (
-        <div className="title">
-            <h1>GitGram</h1>
-            <h2>Gist for Pics</h2>
-            <p>Talk is cheap. Show me the code</p>
-        </div>
-    )
-}
+  const [user] = useAuthState(auth);
+
+  const signOut = async () => {
+    await auth.signOut();
+  };
+  return (
+    <div className="title">
+      <Grid container justify="space-between" alignItems="center">
+        <Grid>
+          <h1>GitGram</h1>
+        </Grid>
+        <Grid>
+          {user ? <Button onClick={signOut}>LogOut</Button> : <LoginButton />}
+        </Grid>
+      </Grid>
+      <h2>Gist for Pics</h2>
+      <p>Talk is cheap. Show me the code</p>
+    </div>
+  );
+};
 
 export default Title;
